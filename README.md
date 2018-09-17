@@ -1,4 +1,5 @@
 Windowsのオフライン環境でのビルドには成功。mbed webコンパイラとmacでのビルドには失敗している。
+また、DisplayAppでの画像の表示はmacでのみ可能。 
 以下引用(https://github.com/d-kato/GR-Boards_Camera_LCD_sample)
 # GR-Boads_Camera_LCD_sample
 GR-PEACH、および、GR-LYCHEEで動作するサンプルプログラムです。  
