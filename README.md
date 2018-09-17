@@ -1,3 +1,5 @@
+Windowsのオフライン環境でのビルドには成功。mbed webコンパイラとmacでのビルドには失敗している。
+以下引用(https://github.com/d-kato/GR-Boards_Camera_LCD_sample)
 # GR-Boads_Camera_LCD_sample
 GR-PEACH、および、GR-LYCHEEで動作するサンプルプログラムです。  
 GR-LYCHEEの開発環境については、[GR-LYCHEE用オフライン開発環境の手順](https://developer.mbed.org/users/dkato/notebook/offline-development-lychee-langja/)を参照ください。
