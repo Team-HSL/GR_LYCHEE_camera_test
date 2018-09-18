@@ -7,11 +7,11 @@
 Webコンパイラでもgithubからのインポートでコンパイルが通りました．しかしながら，Webコンパイラにopencvが対応していないそう()なので開発環境としてはmbedのオフライン環境を作っておいてください．
 
 必要なもの(すべて環境変数のPATHを通して再起動する)
-    - Python(Anacondaが入っていればOK)
-    - Git(https://git-scm.com/download)
-    - Mercurial(https://www.mercurial-scm.org/)
-    - GCC(https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update 詳しくは引用を参考に)
-    - mbed-cli(pipを使ってインストール)
+- Python(Anacondaが入っていればOK)
+- Git(https://git-scm.com/download)
+- Mercurial(https://www.mercurial-scm.org/)
+- GCC(https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update 詳しくは引用を参考に)
+- mbed-cli(pipを使ってインストール)
 
 Git,MercurialのPATHが通っているかの確認は以下
 ```sh
