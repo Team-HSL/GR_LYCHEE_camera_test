@@ -90,3 +90,48 @@ $ mbed compile -m GR_LYCHEE -t GCC_ARM --profile debug
 ```
 PC用アプリは以下よりダウンロードできます。  
 [DisplayApp](https://developer.mbed.org/users/dkato/code/DisplayApp/)  
+
+### （追記）Mac環境でのコンパイルエラーについて
+Mac環境でコンパイルを試すと以下のエラーが吐き出されました．
+```
+Compile ...
+Compile [  3.3%]: mcu_interrupts.c
+Compile [  3.4%]: locking.c
+[Error] ioif_aio.h@53,21: conflicting types for 'pthread_attr_t'
+[ERROR] In file included from ./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/TARGET_RZ_A1XX/dma_if.h:46:0,
+                 from ./mbed-gr-libs/GraphicsFramework/ospl/porting/locking.c:41:
+./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/ioif_aio.h:53:21: error: conflicting types for 'pthread_attr_t'
+ typedef void *      pthread_attr_t;     /**< unsupported */
+                     ^~~~~~~~~~~~~~
+In file included from /usr/local/Cellar/gcc-arm-none-eabi/20171218/arm-none-eabi/include/sys/types.h:239:0,
+                 from /usr/local/Cellar/gcc-arm-none-eabi/20171218/arm-none-eabi/include/stdio.h:61,
+                 from ./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/r_errno.h:20,
+                 from ./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/TARGET_RZ_A1XX/dma_if.h:44,
+                 from ./mbed-gr-libs/GraphicsFramework/ospl/porting/locking.c:41:
+/usr/local/Cellar/gcc-arm-none-eabi/20171218/arm-none-eabi/include/sys/_pthreadtypes.h:75:3: note: previous declaration of 'pthread_attr_t' was here
+ } pthread_attr_t;
+   ^~~~~~~~~~~~~~
+
+[mbed] ERROR: "/Users/uchida/.pyenv/versions/2.7.12/bin/python2.7" returned error.
+       Code: 1
+       Path: "/Users/uchida/progra/HSL_IoT2018/python2_GR/GR-Boards_Camera_LCD_sample"
+       Command: "/Users/uchida/.pyenv/versions/2.7.12/bin/python2.7 -u /Users/uchida/progra/HSL_IoT2018/python2_GR/GR-Boards_Camera_LCD_sample/mbed-os/tools/make.py -t GCC_ARM -m GR_LYCHEE --profile debug --source . --build ./BUILD/GR_LYCHEE/GCC_ARM-DEBUG"
+       Tip: You could retry the last command with "-v" flag for verbose output
+---
+```
+とても長いですね．この中の，
+```
+./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/ioif_aio.h:53:21: error: conflicting types for 'pthread_attr_t'
+ typedef void *      pthread_attr_t;     /**< unsupported */
+                     ^~~~~~~~~~~~~~
+```
+の部分が肝のようで，
+
+``./mbed-gr-libs/R_BSP/RenesasBSP/drv_inc/ioif_aio.h``の53行目21文字目から宣言されている変数``pthread_attr_t``が，他の場所で既に宣言されていることが原因（二重宣言）のようでした．
+
+というわけで，下に示している``ioif_aio.h``の53行目をコメントアウトすることで，エラーは生じなくなりました．
+
+```
+typedef void *      pthread_attr_t;     /**< unsupported */ 
+```
+解決の方法としてはこれが最適かどうかはわかりませんが，とりあえずこれで，DisplayAppをコンパイルすることができました．
