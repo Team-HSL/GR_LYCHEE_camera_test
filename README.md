@@ -91,6 +91,7 @@ $ mbed compile -m GR_LYCHEE -t GCC_ARM --profile debug
 PC用アプリは以下よりダウンロードできます。  
 [DisplayApp](https://developer.mbed.org/users/dkato/code/DisplayApp/)  
 
+---
 ### （追記）Mac環境でのコンパイルエラーについて
 Mac環境でコンパイルを試すと以下のエラーが吐き出されました．
 ```
