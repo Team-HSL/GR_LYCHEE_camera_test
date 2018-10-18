@@ -1,16 +1,16 @@
 # GR-LYCHEEのカメラ画像をPCのアプリで表示するためのプログラム
 
 ## GR-LYCHEEでのオフライン開発環境を作る(チームメンバー向け)
-参考文献(https://developer.mbed.org/users/dkato/notebook/offline-development-lychee-langja/)  
+[参考文献はこちら](https://developer.mbed.org/users/dkato/notebook/offline-development-lychee-langja/)  
 このプログラムのコンパイルがローカルのコンパイラ(Windows環境のみ)でしか通らなかったので，Windowsでの開発環境の手順を記載します．
 追記(9/18) 
 Webコンパイラでもgithubからのインポートでコンパイルが通りました．しかしながら，Webコンパイラにopencvが対応していないそう()なので開発環境としてはmbedのオフライン環境を作っておいてください．
 
 必要なもの(すべて環境変数のPATHを通して再起動する)
 - Python(Anacondaが入っていればOK)
-- Git(https://git-scm.com/download)
-- Mercurial(https://www.mercurial-scm.org/)
-- GCC(https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update 詳しくは引用を参考に)
+- [Git](https://git-scm.com/download)
+- [Mercurial](https://www.mercurial-scm.org/)
+- [GCC](https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update)( 詳しくは引用を参考に)
 - mbed-cli(pipを使ってインストール)
 
 Git,MercurialのPATHが通っているかの確認は以下
@@ -27,6 +27,7 @@ $ conda create -n py27 python=2.7 anaconda
 $ conda info -e
 ```
 py27環境をactivateした状態でpipでmebd-cliをインストールします．
+(追記 コマンドプロンプトなどを使っている場合はsourceが不要)
 ```sh
 $ source activate py27
 $ pip install mbed-cli 
@@ -60,7 +61,7 @@ $ mbed compile -m GR_LYCHEE -t GCC_ARM --profile debug
 
 ## ここにおいてあるプログラムの概要
 カメラ画像をWindows/Mac用PCアプリ**DisplayApp**に表示させるサンプルです。  
-偉大なるプログラム引用元(https://github.com/d-kato/GR-Boards_Camera_LCD_sample)．
+偉大なる[プログラム引用元](https://github.com/d-kato/GR-Boards_Camera_LCD_sample)．
 
 ### カメラとLCDの設定
 ``mbed_app.json``ファイルを変更することでLCD表示をONにできます。
